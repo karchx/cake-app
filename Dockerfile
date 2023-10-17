@@ -1,0 +1,45 @@
+FROM php:8.1-fpm-alpine AS cakephp_php
+
+ARG ENV=dev
+ARG UID=1000
+ARG HOST_OS=Linux
+ENV APP_ENV=$ENV
+ENV HOST_OS=$HOST_OS
+
+# add composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+#
+# dev/test depdencies
+#
+RUN if [[ "$ENV" != "prod" ]]; then \
+    apk add git \
+    && apk add --update --no-cache --virtual .php-deps file re2c autoconf make zlib zlib-dev g++ curl linux-headers \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && apk del -f .php-deps; \
+fi
+
+#
+# application
+COPY .docker/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint
+
+
+WORKDIR /srv/app
+
+RUN adduser --disabled-password --gecos '' -u $UID cakephp;
+RUN addgroup -g 101 nginx
+RUN addgroup cakephp nginx
+RUN addgroup cakephp www-data
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+COPY app .
+
+RUN if [[ "$ENV" = "prod" ]]; then \
+    composer install --prefer-dist --no-interaction --no-dev; \
+fi
+
+ENTRYPOINT ["docker-entrypoint"]
+CMD ["php-fpm"]
