@@ -7,7 +7,7 @@ USE cakephp;
 
 CREATE TABLE IF NOT EXISTS carreras (
     id INT unsigned NOT NULL AUTO_INCREMENT,
-    description VARCHAR(25) NOT NULL,
+    descripcion VARCHAR(25) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -30,19 +30,19 @@ CREATE TABLE IF NOT EXISTS alumnos (
 
 CREATE TABLE IF NOT EXISTS semestres (
     id INT unsigned NOT NULL AUTO_INCREMENT,
-    description VARCHAR(25) NOT NULL,
+    descripcion VARCHAR(25) NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS secciones (
     id INT unsigned NOT NULL AUTO_INCREMENT,
-    description VARCHAR(25) NOT NULL,
+    descripcion VARCHAR(25) NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS cursos (
     id INT unsigned NOT NULL AUTO_INCREMENT,
-    description VARCHAR(25) NOT NULL,
+    descripcion VARCHAR(25) NOT NULL,
     PRIMARY KEY (id)
 );
 
