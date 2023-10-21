@@ -6,19 +6,10 @@ ARG HOST_OS=Linux
 ENV APP_ENV=$ENV
 ENV HOST_OS=$HOST_OS
 
-# add composer
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+RUN apk add --update --no-cache --virtual .php-deps file re2c autoconf make zlib zlib-dev g++ curl linux-headers git \
+    acl curl-dev libxml2-dev icu-dev libedit-dev libzip-dev
 
-#
-# dev/test depdencies
-#
-RUN if [[ "$ENV" != "prod" ]]; then \
-    apk add git \
-    && apk add --update --no-cache --virtual .php-deps file re2c autoconf make zlib zlib-dev g++ curl linux-headers \
-    && pecl install xdebug \
-    && docker-php-ext-enable xdebug \
-    && apk del -f .php-deps; \
-fi
+RUN docker-php-ext-install intl pdo pdo_mysql curl opcache xml zip
 
 #
 # application
@@ -33,13 +24,12 @@ RUN addgroup -g 101 nginx
 RUN addgroup cakephp nginx
 RUN addgroup cakephp www-data
 
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+# add composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY app .
 
-RUN if [[ "$ENV" = "prod" ]]; then \
-    composer install --prefer-dist --no-interaction --no-dev; \
-fi
+RUN composer install --prefer-dist --no-interaction --no-dev --ignore-platform-reqs
 
 ENTRYPOINT ["docker-entrypoint"]
 CMD ["php-fpm"]

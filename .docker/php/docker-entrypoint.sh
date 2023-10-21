@@ -32,7 +32,7 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/cakephp' ]; then
 
     echo "ENV: $APP_ENV"
     if [ "$APP_ENV" != 'prod' ]; then
-        composer install --prefer-dist --no-interaction
+        composer install --prefer-dist --no-interaction --ignore-platform-reqs
     fi
 
     mkdir -p logs tmp
