@@ -26,6 +26,20 @@ services:
     depends_on:
       - php
 
+  db:
+    image: mysql:latest
+    container_name: mysql
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: cakephp
+      MYSQL_USER: cakephp 
+      MYSQL_PASSWORD: cakephp
+      MYSQL_ROOT_PASSWORD: root
+
   composer:
     build:
       context: .
@@ -40,3 +54,6 @@ services:
 
 volumes:
   data:
+
+networks:
+  laravel:
