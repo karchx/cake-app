@@ -55,5 +55,3 @@ services:
 volumes:
   data:
 
-networks:
-  laravel:
