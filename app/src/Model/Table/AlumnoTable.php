@@ -28,7 +28,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Alumno[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Alumno[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class AlumnosTable extends Table
+class AlumnoTable extends Table
 {
     /**
      * Initialize method
@@ -44,11 +44,8 @@ class AlumnosTable extends Table
         $this->setDisplayField('nombres');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Carreras', [
+        $this->belongsTo('Carrera', [
             'foreignKey' => 'carrera_id',
-        ]);
-        $this->hasMany('CursoAprobadoAlumno', [
-            'foreignKey' => 'alumno_id',
         ]);
     }
 
@@ -99,7 +96,7 @@ class AlumnosTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn('carrera_id', 'Carreras'), ['errorField' => 'carrera_id']);
+        $rules->add($rules->existsIn('carrera_id', 'Carrera'), ['errorField' => 'carrera_id']);
 
         return $rules;
     }

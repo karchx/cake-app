@@ -53,6 +53,10 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/add-carrera', ['controller' => 'Carrera', 'action' => 'add']);
         $builder->connect('/edit-carrera/{id}', ['controller' => 'Carrera', 'action' => 'edit'], ["pass" => ["id"]]);
 
+        $builder->connect('/add-alumno', ['controller' => 'Alumno', 'action' => 'add']);
+        $builder->connect('/edit-alumno/{id}', ['controller' => 'Alumno', 'action' => 'edit'], ["pass" => ["id"]]);
+
+
         $builder->fallbacks();
     });
 

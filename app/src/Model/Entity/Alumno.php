@@ -36,6 +36,6 @@ class Alumno extends Entity
         'fotografia' => true,
         'carrera_id' => true,
         'carrera' => true,
-        'curso_aprobado_alumno' => true,
+        //'curso_aprobado_alumno' => true,
     ];
 }
