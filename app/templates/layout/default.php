@@ -30,6 +30,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
+    <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -65,6 +66,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         .main {
             margin-left: 260px;
         }
+
+        .bnt-success {
+            background-color: #417282;
+            border-color: #b1cccd;
+        }
     </style>
 </head>
 
@@ -72,19 +78,34 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="sidebar">
         <ul>
             <li>
-                <a href="carrera">Carreras</a>
+                <?= $this->Html->link(
+                    'Carreras',
+                    '/carrera',
+                ); ?>
             </li>
             <li>
-                <a href="curso">Cursos</a>
+                <?= $this->Html->link(
+                    'Cursos',
+                    '/curso',
+                ); ?>
             </li>
             <li>
-                <a href="semestre">Semestres</a>
+                <?= $this->Html->link(
+                    'Semestres',
+                    '/semestre',
+                ); ?>
             </li>
             <li>
-                <a href="seccion">Secciones</a>
+                <?= $this->Html->link(
+                    'Secciones',
+                    '/seccion',
+                ); ?>
             </li>
             <li>
-                <a href="alumno">Alumnos</a>
+                <?= $this->Html->link(
+                    'Alumnos',
+                    '/alumno',
+                ); ?>
             </li>
         </ul>
     </div>
