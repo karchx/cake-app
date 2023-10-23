@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS curso_aprobado_alumno (
     semestre_id INT unsigned,
     seccion_id INT unsigned,
     curso_id INT unsigned,
+    nota   DECIMAL(4, 2),
     PRIMARY KEY (id),
     FOREIGN KEY (alumno_id) REFERENCES alumnos(id),
     FOREIGN KEY (semestre_id) REFERENCES semestres(id),
