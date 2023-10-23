@@ -50,14 +50,6 @@ return function (RouteBuilder $routes): void {
     $routes->setRouteClass(DashedRoute::class);
 
     $routes->scope('/', function (RouteBuilder $builder): void {
-        $builder->connect('/add-carrera', ['controller' => 'Carrera', 'action' => 'add']);
-        $builder->connect('/edit-carrera/{id}', ['controller' => 'Carrera', 'action' => 'edit'], ["pass" => ["id"]]);
-
-        $builder->connect('/add-alumno', ['controller' => 'Alumno', 'action' => 'add']);
-        $builder->connect('/edit-alumno/{id}', ['controller' => 'Alumno', 'action' => 'edit'], ["pass" => ["id"]]);
-
-        $builder->connect('/add-semestre', ['controller' => 'Semestre', 'action' => 'add']);
-        $builder->connect('/edit-semestre/{id}', ['controller' => 'Semestre', 'action' => 'edit'], ["pass" => ["id"]]);
 
         $builder->fallbacks();
     });
