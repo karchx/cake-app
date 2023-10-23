@@ -56,6 +56,8 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/add-alumno', ['controller' => 'Alumno', 'action' => 'add']);
         $builder->connect('/edit-alumno/{id}', ['controller' => 'Alumno', 'action' => 'edit'], ["pass" => ["id"]]);
 
+        $builder->connect('/add-semestre', ['controller' => 'Semestre', 'action' => 'add']);
+        $builder->connect('/edit-semestre/{id}', ['controller' => 'Semestre', 'action' => 'edit'], ["pass" => ["id"]]);
 
         $builder->fallbacks();
     });
