@@ -58,6 +58,7 @@ class AlumnoController extends AppController
 
         if ($this->request->is('post')) {
             $alumno = $this->Alumno->patchEntity($alumno, $this->request->getData());
+            $attachment = $this->request->getData();
             if ($this->Alumno->save($alumno)) {
                 $this->Flash->success(__('Alumno agregado.'));
 
