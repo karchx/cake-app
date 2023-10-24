@@ -113,6 +113,11 @@ class AlumnoController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+    public function aprobar($id = null)
+    {
+        return $this->redirect('curso-aprobado-alumno/view/'.$id);
+    }
+
     private function getCarreras()
     {
         $carreras = [];

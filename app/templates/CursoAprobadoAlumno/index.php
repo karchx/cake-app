@@ -33,15 +33,14 @@
                 <?= $alumno->carrera ?>
             </td>
             <td>
-                <?= $this->Html->link('<i class="fa-regular fa-pen-to-square"></i>', ['action' => 'edit', $alumno->id], ['escape' => false]) ?>
+                <?= $this->Html->link('Editar', ['action' => 'edit', $alumno->id]) ?>
                 <?= $this->Form->postLink(
                     'Eliminar',
                     ['action' => 'delete', $alumno->id],
-                    ['confirm' => 'Seguro de eliminar?'],
-                    ['escape' => false]
+                    ['confirm' => 'Seguro de eliminar?']
                 )
-                ?>
-                <?= $this->Html->link('<i class="fa-solid fa-user-check"></i>', ['action' => 'aprobar', $alumno->id], ['escape' => false]) ?>
+            ?>
+                <?= $this->Html->link('Aprobar curso', ['action' => 'aprobar', $alumno->id]) ?>
             </td>
         </tr>
     <?php endforeach; ?>

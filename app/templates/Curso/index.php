@@ -1,5 +1,5 @@
 <h1>Cursos</h1>
-<p><?= $this->Html->link("Agregar", ['action' => 'add']) ?></p>
+<?= $this->Html->link('<button class="bnt-success">Agregar <i class="fa-solid fa-plus fa-lg"></i></button>', ['action' => 'add'], ['escape' => false]) ?>
 
 <table>
     <tr>
