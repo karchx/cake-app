@@ -41,9 +41,9 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/cakephp' ]; then
     echo "HOST OS: $HOST_OS"
     if [[ $HOST_OS == *"Linux"* ]]; then
         echo "Setting ACLs..."
-        setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX logs
-        setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX tmp
-        setfacl -R -m g:nginx:rwX /srv/app
+        #setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX logs
+        #setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX tmp
+        #setfacl -R -m g:nginx:rwX /srv/app
     fi
 
     echo "setting ownership..."
