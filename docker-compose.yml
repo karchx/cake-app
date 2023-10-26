@@ -1,30 +1,18 @@
 version: '3.9'
 
 services:
-  php:
+  web:
     build:
       context: .
-    env_file:
-      - ./.docker/php.env.development
-    environment:
-      PHP_IDE_CONFIG: "serverName=localhost"
-    volumes:
-      - ./app:/srv/app
-      - ./.docker/php/development:/usr/local/etc/php
-         #- ~/.ssh/:/home/root/.ssh
-
-  web:
-    image: nginx:1.19-alpine
     working_dir: /srv/app
     environment:
       TERM: Linux
     volumes:
       - ./app:/srv/app
-      - ./.docker/nginx:/etc/nginx/conf.d
+      - ./.docker/php/development:/usr/local/etc/php
     ports:
-      - "8080:80"
-    depends_on:
-      - php
+      - "8765:8765"
+    command: sh -c "bin/cake server -H 0.0.0.0"
 
   db:
     image: mysql:latest
